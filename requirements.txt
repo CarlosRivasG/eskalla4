@@ -21,7 +21,7 @@ django-environ==0.10.0
 stripe==5.5.0
 braintree==4.21.0
 
-pyJWT==2.8.0
+pyJWT==2.1.0
 
 boto3==1.28.24
 django-storages==1.13.2 
