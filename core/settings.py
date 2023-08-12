@@ -11,7 +11,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 
 SECRET_KEY = os.environ.get('SECRET_KEY')
-
+#aca esto se tiene que colocar false a la hora de desplegar 
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
@@ -28,6 +28,8 @@ DJANGO_APPS = [
 PROJECT_APPS=[]
 ECOMMERCE_APPS=[
 ]
+
+#lo que esta en requirements, o sea las app usadas 
 THIRD_PARTY_APPS=[
     'corsheaders',
     'rest_framework',
@@ -64,7 +66,7 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'core.urls'
-
+# aca le decimos que por medio de build genere el template
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -85,12 +87,13 @@ WSGI_APPLICATION = 'core.wsgi.application'
 
 
 
-
+#la base de datos que vamos a usar 
 DATABASES = {
     "default": env.db("DATABASE_URL", default="postgres:///eskalla"),
 }
 DATABASES["default"]["ATOMIC_REQUESTS"] = True
 
+#colocamos los unicos links que pueden abirir el poroyecto
 CORS_ORIGIN_WHITELIST = [
     'http://localhost:3000',
     'http://localhost:8000',
@@ -140,7 +143,7 @@ USE_L10N = True
 USE_TZ = True
 
 
-
+#con esto conectamos django y react por medio de build y los 2 static
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATIC_URL = '/static/'
 
@@ -163,9 +166,47 @@ REST_FRAMEWORK = {
     'PAGE_SIZE': 12
 }
 
-
+# esto es para autenticar la cuenta o usuario 
 AUTHENTICATION_BACKENDS = (
     'social_core.backends.google.GoogleOAuth2',
     'social_core.backends.facebook.FacebookOAuth2',
     'django.contrib.auth.backends.ModelBackend',
 )
+
+EMAIL_BACKEND='django.core.mail.backends.console.EmailBackend'
+
+if not DEBUG:
+    DEFAULT_FROM_EMAIL = 'Vudera - Academia de Software <mail@vudera.com>'
+    EMAIL_BACKEND='django.core.mail.backends.smtp.EmailBackend'
+    EMAIL_HOST = env('EMAIL_HOST')
+    EMAIL_HOST_USER = env('EMAIL_HOST_USER')
+    EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')
+    EMAIL_PORT = env('EMAIL_PORT')
+    EMAIL_USE_TLS = env('EMAIL_USE_TLS')
+
+    # # django-ckeditor will not work with S3 through django-storages without this line in settings.py
+    # AWS_QUERYSTRING_AUTH = False
+
+    # # aws settings
+
+    # AWS_ACCESS_KEY_ID = env('AWS_ACCESS_KEY_ID')
+    # AWS_SECRET_ACCESS_KEY = env('AWS_SECRET_ACCESS_KEY')
+    # AWS_STORAGE_BUCKET_NAME = env('AWS_STORAGE_BUCKET_NAME')
+
+    # AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
+    # AWS_S3_OBJECT_PARAMETERS = {'CacheControl': 'max-age=86400'}
+    # AWS_DEFAULT_ACL = 'public-read'
+
+    # # s3 static settings
+    # STATIC_LOCATION = 'static'
+    # STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{STATIC_LOCATION}/'
+    # STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
+    # # s3 public media settings
+
+    # PUBLIC_MEDIA_LOCATION = 'media'
+    # MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{PUBLIC_MEDIA_LOCATION}/'
+    # DEFAULT_FILE_STORAGE = 'core.storage_backends.MediaStore'
+
+    # STATICFILES_DIRS = (os.path.join(BASE_DIR, 'build/static'),)
+    # STATIC_ROOT = os.path.join(BASE_DIR, 'static')
