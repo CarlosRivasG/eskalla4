@@ -1,11 +1,11 @@
-import Layout from "../hocs/Layout";
+import Layout from "../../hocs/Layout";
 
 
-const Home = () => {
+const Login = () => {
     return (
         <Layout >      
             <div className="text-3xl font-bold underline text-blue-600"> 
-                home dds
+                Login
 
             </div>     
 
@@ -13,4 +13,4 @@ const Home = () => {
     );
 };
 
-export default Home;
+export default Login;

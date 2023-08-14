@@ -1,5 +1,6 @@
 import { Fragment } from 'react'
 import { Popover, Transition } from '@headlessui/react'
+
 import {
   BookmarkAltIcon,
   BriefcaseIcon,
@@ -90,7 +91,7 @@ export default function Navbar() {
       <div className="relative z-20">
         <div className="max-w-7xl mx-auto flex justify-between items-center px-4 py-5 sm:px-6 sm:py-4 lg:px-8 md:justify-start md:space-x-10">
           <div>
-            <a href="#" className="flex">
+            <a href="/" className="flex">
               <span className="sr-only">Workflow</span>
               <img
                 className="h-8 w-auto sm:h-10"
@@ -183,10 +184,10 @@ export default function Navbar() {
                 )}
               </Popover>
               <a href="#" className="text-base font-medium text-gray-500 hover:text-gray-900">
-                Pricing
+                Categorias
               </a>
               <a href="#" className="text-base font-medium text-gray-500 hover:text-gray-900">
-                Docs
+                Contacto
               </a>
               <Popover>
                 {({ open }) => (
@@ -292,11 +293,11 @@ export default function Navbar() {
               </Popover>
             </Popover.Group>
             <div className="flex items-center md:ml-12">
-              <a href="#" className="text-base font-medium text-gray-500 hover:text-gray-900">
+              <a href="/login" className="text-base font-medium text-gray-500 hover:text-gray-900">
                 Sign in
               </a>
               <a
-                href="#"
+                href="/Signup"
                 className="ml-8 inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700"
               >
                 Sign up
